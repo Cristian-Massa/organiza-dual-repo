@@ -1,29 +1,35 @@
 import {
   Body,
   Controller,
+  Delete,
+  Get,
   HttpStatus,
   Post,
+  Put,
   Query,
   Res,
 } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
-import { Response, Request } from 'express';
+import { Response } from 'express';
 import { UsersService } from '../service/users.service';
 import { UserCreateDTO } from '../dto/create.dto';
 import { UserLoginDTO } from '../dto/login.dto';
 import { UserBanDTO } from '../dto/ban.dto';
+import { UserDeleteDTO } from '../dto/delete.dto';
+import { UserGetDTO } from '../dto/get.dto';
+import { UserModifyDTO } from '../dto/modify.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private userService: UsersService) {}
 
-  @Post('/regisster')
+  @Post('/register')
   async create(@Res() response: Response, @Body() body: UserCreateDTO) {
     const res = await this.userService.create(body);
     if (res.status === HttpStatus.CREATED) {
       const hash = jwt.sign(
         {
-          email: body.email,
+          id: res.response
         },
         process.env.SECRET_JWT,
         {
@@ -35,7 +41,7 @@ export class UsersController {
         httpOnly: true,
       });
     }
-    return response.status(res.status).json({ response: res.response });
+    return response.status(res.status).json({ response: res.payload });
   }
 
   @Post('/login')
@@ -44,7 +50,7 @@ export class UsersController {
     if (res.status === HttpStatus.CREATED) {
       const hash = jwt.sign(
         {
-          email: body.email,
+          id: res.response
         },
         process.env.SECRET_JWT,
         {
@@ -56,12 +62,31 @@ export class UsersController {
         httpOnly: true,
       });
     }
-    return response.status(res.status).json({ response: res.response });
+    return response.status(res.status).json({ response: res.payload });
   }
 
   @Post('/ban')
   async ban(@Res() response: Response, @Query() query: UserBanDTO) {
     const res = await this.userService.ban(query);
     return response.status(res.status).json({ response: res.response });
+  }
+
+  @Delete('/delete')
+  async delete(@Res() response: Response,  @Query() query: UserDeleteDTO){
+    const res = await this.userService.delete(query);
+    return response.status(res.status).json({ response: res.response });
+  }
+
+  @Get('/get')
+  async get(@Res() response: Response,  @Body() body: UserGetDTO){
+    const res = await this.userService.get(body);
+    return response.status(res.status).json({ response: res.response });
+  }
+
+  @Put('/modify')
+  async modify(@Res() response: Response,   @Body() body: UserModifyDTO){
+    const res = await this.userService.modify(body);
+    return response.status(res.status).json({ response: res.response });
+
   }
 }

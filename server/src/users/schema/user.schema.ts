@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Country } from 'src/common/schema/country.schema';
 import { Company } from 'src/companies/schema/company.schema';
 import { Tier } from '../enums/Tiers.enum';
 import { Banned } from '../interface/Banned.interface';
@@ -29,11 +28,12 @@ export class User{
     @Prop()
     tier: Tier;
 
-    @Prop()
+    @Prop({ type:  Object })
+
     banned: Banned;
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Country'})
-    country: Country;
+    @Prop()
+    country: string;
     
     @Prop()
     address: string;
