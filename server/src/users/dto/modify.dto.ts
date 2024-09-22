@@ -1,7 +1,29 @@
-import { IsMongoId } from "class-validator";
-import { UserCreateDTO } from "./create.dto";
+import {
+  IsEmail,
+  IsMongoId,
+  IsString,
+  IsStrongPassword,
+} from 'class-validator';
 
-export class UserModifyDTO extends UserCreateDTO{
-    @IsMongoId()
-    id: string;
+export class UserModifyDTO {
+
+  @IsMongoId()
+  id: string;
+  @IsString()
+  name: string;
+
+  @IsEmail()
+  email: string;
+
+  @IsStrongPassword()
+  password: string;
+
+  @IsString()
+  address: string;
+
+  @IsMongoId()
+  country: string;
+
+  @IsString()
+  city: string;
 }

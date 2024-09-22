@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Company } from 'src/companies/schema/company.schema';
+import { Company } from '../../companies/schema/company.schema';
 import { Tier } from '../enums/Tiers.enum';
 import { Banned } from '../interface/Banned.interface';
 

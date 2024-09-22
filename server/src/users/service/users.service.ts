@@ -9,9 +9,7 @@ import { UserDeleteDTO } from '../dto/delete.dto';
 import { UserGetDTO } from '../dto/get.dto';
 import { UserGetAllDTO } from '../dto/getAll.dto';
 import { Banned } from '../interface/Banned.interface';
-import { response } from 'express';
 import { UserModifyDTO } from '../dto/modify.dto';
-/*************  ✨ Codeium Command 🌟  *************/
 
 @Injectable()
 export class UsersService {

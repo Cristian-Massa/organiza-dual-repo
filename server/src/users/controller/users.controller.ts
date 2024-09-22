@@ -18,6 +18,7 @@ import { UserBanDTO } from '../dto/ban.dto';
 import { UserDeleteDTO } from '../dto/delete.dto';
 import { UserGetDTO } from '../dto/get.dto';
 import { UserModifyDTO } from '../dto/modify.dto';
+import { UserGetAllDTO } from '../dto/getAll.dto';
 
 @Controller('users')
 export class UsersController {
@@ -29,7 +30,7 @@ export class UsersController {
     if (res.status === HttpStatus.CREATED) {
       const hash = jwt.sign(
         {
-          id: res.response
+          id: res.response,
         },
         process.env.SECRET_JWT,
         {
@@ -50,7 +51,7 @@ export class UsersController {
     if (res.status === HttpStatus.CREATED) {
       const hash = jwt.sign(
         {
-          id: res.response
+          id: res.response,
         },
         process.env.SECRET_JWT,
         {
@@ -72,21 +73,30 @@ export class UsersController {
   }
 
   @Delete('/delete')
-  async delete(@Res() response: Response,  @Query() query: UserDeleteDTO){
+  async delete(@Res() response: Response, @Query() query: UserDeleteDTO) {
     const res = await this.userService.delete(query);
     return response.status(res.status).json({ response: res.response });
   }
 
   @Get('/get')
-  async get(@Res() response: Response,  @Body() body: UserGetDTO){
+  async get(@Res() response: Response, @Body() body: UserGetDTO) {
     const res = await this.userService.get(body);
     return response.status(res.status).json({ response: res.response });
   }
 
+  @Get('/getAll')
+  async getAll(@Res() response: Response, @Body() body: UserGetAllDTO) {
+    const res = await this.userService.getAll(body);
+    return response.status(res.status).json({ response: res.response });
+  }
+
   @Put('/modify')
-  async modify(@Res() response: Response,   @Body() body: UserModifyDTO){
+  async modify(
+    @Res() response: Response,
+    @Query() query: string,
+    @Body() body: UserModifyDTO,
+  ) {
     const res = await this.userService.modify(body);
     return response.status(res.status).json({ response: res.response });
-
   }
 }
