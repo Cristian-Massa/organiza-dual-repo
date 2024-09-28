@@ -30,7 +30,7 @@ export class UsersController {
     if (res.status === HttpStatus.CREATED) {
       const hash = jwt.sign(
         {
-          id: res.response,
+          id: res.payload,
         },
         process.env.SECRET_JWT,
         {
@@ -42,7 +42,7 @@ export class UsersController {
         httpOnly: true,
       });
     }
-    return response.status(res.status).json({ response: res.payload });
+    return response.status(res.status).json({ response: res.response });
   }
 
   @Post('/login')
@@ -51,7 +51,7 @@ export class UsersController {
     if (res.status === HttpStatus.CREATED) {
       const hash = jwt.sign(
         {
-          id: res.response,
+          id: res.payload,
         },
         process.env.SECRET_JWT,
         {
@@ -63,7 +63,7 @@ export class UsersController {
         httpOnly: true,
       });
     }
-    return response.status(res.status).json({ response: res.payload });
+    return response.status(res.status).json({ response: res.response });
   }
 
   @Post('/ban')

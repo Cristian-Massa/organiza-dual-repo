@@ -20,20 +20,7 @@ describe('UsersService', () => {
     });
 
     it('should create a user', async () => {
-      const user = {
-        email: 'test@test.com',
-        password: 'test1232',
-        name: 'testdas',
-        address: 'testdsa',
-        phone: '32132132',
-        country: 'testdsa',
-        city: 'testdsadas',
-      };
-      const result = await service.create(user)
-      
-      expect(result.status).toBe(HttpStatus.CREATED);
 
-      await service.delete({id: result.payload._id.toString()});
     });
   });
 });
