@@ -8,7 +8,8 @@ export class JwtTokenUtil {
     return token;
   }
 
-  static verifyToken(token: string) {
-    return jwt.verify(token, process.env.JWT_SECRET!);
+  static verifyToken(token: string): jwt.JwtPayload {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    return decoded as jwt.JwtPayload;
   }
 }
