@@ -1,32 +1,17 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
-import { CommonController } from './common/controller/common.controller';
-import { CommonService } from './common/service/common.service';
-import { UsersModule } from './users/users.module';
+import { Module } from '@nestjs/common';
+import { AuthModule } from '@/modules/auth/auth.module';
+import { UsersModule } from './modules/users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CompaniesModule } from './companies/companies.module';
 import { ConfigModule } from '@nestjs/config';
-import { PlannersModule } from './planners/planners.module';
-import { AuthCheckMiddleware } from './common/middleware/authCheck.middleware';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
+    MongooseModule.forRoot(process.env.MONGO_URI!),
+    AdminModule,
+    AuthModule,
     UsersModule,
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot('mongodb://0.0.0.0:27017/'),
-    CompaniesModule,
-    PlannersModule,
   ],
-  controllers: [CommonController],
-  providers: [CommonService],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(AuthCheckMiddleware)
-      .exclude('/users/login')
-      .exclude('/users/register')
-      .exclude('/company/getAll')
-      .exclude('/company/get')
-      .forRoutes('*')
-  }
-}
+export class AppModule {}
