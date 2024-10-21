@@ -15,9 +15,7 @@ export class AuthController {
       this.authService.generateCookie(res, user.data.toString());
       return res.status(user.status).json(user.message);
     } catch (error) {
-      res
-        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .json({ error: error.message });
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(error.message);
     }
   }
 
@@ -30,9 +28,7 @@ export class AuthController {
       this.authService.generateCookie(res, user.data.toString());
       return res.status(user.status).json(user.message);
     } catch (error) {
-      return res
-        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .json({ error: error.message });
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(error.message);
     }
   }
 }

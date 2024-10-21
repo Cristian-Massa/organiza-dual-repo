@@ -1,7 +1,7 @@
 import { ESector } from '@/modules/companies/enum/sector.enum';
 import { IsMongoId, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class companyUpdate {
+export class CompanyUpdateDto {
   @IsNotEmpty()
   @IsMongoId()
   id: string;

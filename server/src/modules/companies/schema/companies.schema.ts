@@ -37,11 +37,8 @@ export class Company {
   @Prop({ default: false })
   isBanned: boolean;
 
-  @Prop({ default: null })
-  deletedAt: Date | null;
-
   @Prop({ defualt: null })
-  employees: string[] | null;
+  employees: string[];
 }
 
 export const CompanySchema = SchemaFactory.createForClass(Company);

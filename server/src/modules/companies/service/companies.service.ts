@@ -1,10 +1,12 @@
 import { Company } from '@/modules/companies/schema/companies.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CompanyCreateDto } from '../dto/companyCreate.dto';
-import { HttpException, HttpStatus } from '@nestjs/common';
-import { companyUpdate } from '../dto/companyUpdate.dto';
+import { CompanyCreateDto } from '@/modules/companies/dto/companyCreate.dto';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { CompanyUpdateDto } from '@/modules/companies/dto/companyUpdate.dto';
+import { CompanyQRDto } from '@/modules/companies/dto/companyQR.dto';
 
+@Injectable()
 export class CompaniesService {
   constructor(
     @InjectModel(Company.name) private readonly companyModel: Model<Company>,
@@ -67,10 +69,17 @@ export class CompaniesService {
       data: companies,
     };
   }
+  // TODO: Generar QR
+  async generateQR(id: CompanyQRDto) {
+    console.log(id);
 
-  // async generateQR(id: string) {}
+    return {
+      status: HttpStatus.OK,
+      message: 'QR generada',
+    };
+  }
 
-  async update(info: companyUpdate) {
+  async update(info: CompanyUpdateDto) {
     const company = await this.companyModel.findByIdAndUpdate(info.id);
     if (!company) {
       throw new HttpException('No se pudo encontrar la empresa', 404);

@@ -32,6 +32,7 @@ export class AuthCheckGuard implements CanActivate {
         HttpStatus.UNAUTHORIZED,
       );
     }
+
     return true;
   }
 }
