@@ -27,10 +27,10 @@ export class User {
   city?: string;
 
   @Prop({ default: '' })
-  isOwner: string;
+  ownerOf: string;
 
   @Prop({ default: '' })
-  isEmployee: string;
+  employeeOf: string;
 
   @Prop({ default: false })
   isBanned: boolean;

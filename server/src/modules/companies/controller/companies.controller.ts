@@ -15,8 +15,10 @@ import { CompaniesService } from '@/modules/companies/service/companies.service'
 import { CompanyCreateDto } from '@/modules/companies/dto/companyCreate.dto';
 import { CompanyDeleteDto } from '@/modules/companies/dto/companyDelete.dto';
 import { PAGINATE_LIMIT } from '@/modules/companies/constant/companies.constants';
-import { CompanyQRDto } from '@/modules/companies/dto/companyQR.dto';
+// import { CompanyQRDto } from '@/modules/companies/dto/companyQR.dto';
 import { CompanyUpdateDto } from '@/modules/companies/dto/companyUpdate.dto';
+import { CompanyAddEmployeeDto } from '../dto/companyAddEmployee.dto';
+import { CompanyGetEmployeesDto } from '../dto/companyGetEmployees.dto';
 
 @Controller('companies')
 export class CompaniesController {
@@ -66,16 +68,16 @@ export class CompaniesController {
     }
   }
 
-  @UseGuards(AuthCheckGuard)
-  @Post('generateQR')
-  async generateQR(@Res() res: Response, @Body() body: CompanyQRDto) {
-    try {
-      const generatedQR = await this.companiesService.generateQR(body);
-      return res.status(generatedQR.status).json(generatedQR.message);
-    } catch (error) {
-      res.status(500).json(error.message);
-    }
-  }
+  // @UseGuards(AuthCheckGuard)
+  // @Post('generateQR')
+  // async generateQR(@Res() res: Response, @Body() body: CompanyQRDto) {
+  //   try {
+  //     const generatedQR = await this.companiesService.generateQR(body);
+  //     return res.status(generatedQR.status).json(generatedQR.message);
+  //   } catch (error) {
+  //     res.status(500).json(error.message);
+  //   }
+  // }
 
   @UseGuards(AuthCheckGuard)
   @Put('update')
@@ -83,6 +85,31 @@ export class CompaniesController {
     try {
       const updatedCompany = await this.companiesService.update(body);
       return res.status(updatedCompany.status).json(updatedCompany.message);
+    } catch (error) {
+      res.status(500).json(error.message);
+    }
+  }
+
+  @UseGuards(AuthCheckGuard)
+  @Post('addEmployee')
+  async addEmployee(@Res() res: Response, @Body() body: CompanyAddEmployeeDto) {
+    try {
+      const addedEmployee = await this.companiesService.addEmployee(body);
+      return res.status(addedEmployee.status).json(addedEmployee.message);
+    } catch (error) {
+      res.status(500).json(error.message);
+    }
+  }
+
+  @UseGuards(AuthCheckGuard)
+  @Get('getEmployees')
+  async getEmployees(
+    @Res() res: Response,
+    @Body() body: CompanyGetEmployeesDto,
+  ) {
+    try {
+      const addedEmployee = await this.companiesService.getEmployees(body);
+      return res.status(addedEmployee.status).json(addedEmployee.data);
     } catch (error) {
       res.status(500).json(error.message);
     }

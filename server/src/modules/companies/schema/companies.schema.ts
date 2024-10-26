@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
 import { ESector } from '../enum/sector.enum';
 
 export type CompanyDocument = HydratedDocument<Company>;
@@ -9,7 +9,6 @@ export class Company {
     required: true,
     unique: true,
     sparse: true,
-    type: { id: mongoose.Schema.Types.ObjectId },
   })
   idOwner: string;
 
@@ -37,7 +36,7 @@ export class Company {
   @Prop({ default: false })
   isBanned: boolean;
 
-  @Prop({ defualt: null })
+  @Prop({ default: [], type: [String] })
   employees: string[];
 }
 

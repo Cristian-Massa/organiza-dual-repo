@@ -4,12 +4,14 @@ import { Model } from 'mongoose';
 import { CompanyCreateDto } from '@/modules/companies/dto/companyCreate.dto';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CompanyUpdateDto } from '@/modules/companies/dto/companyUpdate.dto';
-import { CompanyQRDto } from '@/modules/companies/dto/companyQR.dto';
-
+import { CompanyAddEmployeeDto } from '../dto/companyAddEmployee.dto';
+import { UsersService } from '@/modules/users/service/users.service';
+import { CompanyGetEmployeesDto } from '../dto/companyGetEmployees.dto';
 @Injectable()
 export class CompaniesService {
   constructor(
     @InjectModel(Company.name) private readonly companyModel: Model<Company>,
+    private readonly userService: UsersService,
   ) {}
   async create(info: CompanyCreateDto) {
     const company = await this.companyModel.create(info);
@@ -29,7 +31,10 @@ export class CompaniesService {
   async delete(id: string) {
     const company = await this.companyModel.findByIdAndDelete(id);
     if (!company) {
-      throw new HttpException('No se pudo encontrar la empresa', 404);
+      throw new HttpException(
+        'No se pudo encontrar la empresa',
+        HttpStatus.NOT_FOUND,
+      );
     }
     return {
       status: HttpStatus.OK,
@@ -69,24 +74,67 @@ export class CompaniesService {
       data: companies,
     };
   }
-  // TODO: Generar QR
-  async generateQR(id: CompanyQRDto) {
-    console.log(id);
-
-    return {
-      status: HttpStatus.OK,
-      message: 'QR generada',
-    };
-  }
 
   async update(info: CompanyUpdateDto) {
-    const company = await this.companyModel.findByIdAndUpdate(info.id);
+    const company = await this.companyModel.findByIdAndUpdate(info.id, info);
     if (!company) {
-      throw new HttpException('No se pudo encontrar la empresa', 404);
+      throw new HttpException(
+        'No se pudo actualizar la empresa',
+        HttpStatus.NOT_FOUND,
+      );
     }
     return {
       status: HttpStatus.OK,
-      message: 'Empresa actualizada',
+      message: 'Empresa actualizada con exito',
+    };
+  }
+
+  async addEmployee(info: CompanyAddEmployeeDto) {
+    const company = this.companyModel;
+
+    const employeeExist = await company.findOne({ _id: info.id });
+    if (employeeExist && !employeeExist?.employees.includes(info.employee)) {
+      await company.updateOne(
+        { _id: info.id },
+        {
+          $addToSet: {
+            employees: info.employee,
+          },
+        },
+      );
+      return {
+        status: HttpStatus.OK,
+        message: 'Empleado agregado',
+      };
+    }
+
+    if (!company) {
+      throw new HttpException(
+        'No se pudo encontrar la empresa',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    throw new HttpException(
+      'Ya existe el empleado en la empresa',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
+  async getEmployees({ employees }: CompanyGetEmployeesDto) {
+    const userModel = this.userService.userModel;
+    const employeesFounded = await userModel.find({
+      _id: { $in: employees },
+    });
+
+    if (!employees) {
+      throw new HttpException(
+        'No se pudo encontrar los empleados',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return {
+      status: HttpStatus.OK,
+      data: employeesFounded,
     };
   }
 }

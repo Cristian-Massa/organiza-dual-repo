@@ -22,7 +22,6 @@ export class AdminCheckGuard implements CanActivate {
       );
     }
     const decrypted = JwtTokenUtil.verifyToken(session);
-    console.log(decrypted);
     if (decrypted.exp! > Date.now() / 1000) {
       const isAdmin = await this.usersService.userModel.findById(
         decrypted.data,

@@ -26,7 +26,7 @@ export class EmailAuthStrategy implements AuthStrategy {
     return {
       status: HttpStatus.OK,
       message: 'Login exitoso',
-      data: { id: user._id },
+      data: user._id,
     };
   }
 
@@ -41,7 +41,7 @@ export class EmailAuthStrategy implements AuthStrategy {
     return {
       status: HttpStatus.OK,
       message: 'Registro exitoso',
-      data: { id: user._id },
+      data: user._id,
     };
   }
 }
