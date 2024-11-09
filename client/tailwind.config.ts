@@ -10,7 +10,7 @@ const config: Config = {
     theme: {
         extend: {
             backgroundImage: {
-                landingBG: "url('@/public/images/landing-bg.jpg')",
+                landingBG: `url("/images/landing-bg.jpg")`,
             },
             backgroundColor: {
                 primaryBG: "#e0e0e0",
