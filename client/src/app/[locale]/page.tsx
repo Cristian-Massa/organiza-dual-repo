@@ -36,6 +36,7 @@ export default function Home() {
                     <article className="grid grid-cols-1 md:grid-cols-6 gap-10 h-[400px]">
                         <Container sx="md:col-span-3 relative">
                             <Image
+                                className="object-cover"
                                 src="https://placehold.co/600x400"
                                 fill
                                 alt="placeholder"
@@ -43,6 +44,7 @@ export default function Home() {
                         </Container>
                         <Container sx="md:col-span-1 relative">
                             <Image
+                                className="object-cover"
                                 src="https://placehold.co/600x400"
                                 fill
                                 alt="placeholder"
@@ -50,6 +52,7 @@ export default function Home() {
                         </Container>
                         <Container sx="md:col-span-2 relative">
                             <Image
+                                className="object-cover"
                                 src="https://placehold.co/600x400"
                                 fill
                                 alt="placeholder"
@@ -57,6 +60,7 @@ export default function Home() {
                         </Container>
                         <Container sx="md:col-span-2 relative">
                             <Image
+                                className="object-cover"
                                 src="https://placehold.co/600x400"
                                 fill
                                 alt="placeholder"
@@ -64,6 +68,7 @@ export default function Home() {
                         </Container>
                         <Container sx="md:col-span-3 relative">
                             <Image
+                                className="object-cover"
                                 src="https://placehold.co/600x400"
                                 fill
                                 alt="placeholder"
@@ -71,6 +76,7 @@ export default function Home() {
                         </Container>
                         <Container sx="col-span-1 relative">
                             <Image
+                                className="object-cover"
                                 src="https://placehold.co/600x400"
                                 fill
                                 alt="placeholder"
@@ -97,7 +103,8 @@ export default function Home() {
                     </div>
                     <Container sx="relative h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
                         <Image
-                            className=""
+                            className="object-cover"
+                            
                             src="https://placehold.co/600x400"
                             fill
                             alt="professional"
@@ -107,6 +114,7 @@ export default function Home() {
                 <section className="flex flex-col md:flex-row justify-center items-center text-center gap-10 py-20">
                     <Container sx="relative h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
                         <Image
+                            className="object-cover"
                             src="https://placehold.co/600x400"
                             fill
                             alt="professional"
