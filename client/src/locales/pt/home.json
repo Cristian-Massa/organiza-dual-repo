@@ -1,7 +1,8 @@
 {
   "home": {
-    "header": {
-      "welcome": "Bem-vindo"
-    }
+    "links": {
+      "know-more": "conoce-mas"
+    },
+    "header": {}
   }
 }

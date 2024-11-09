@@ -1,7 +1,8 @@
 {
   "home": {
-    "header": {
-      "welcome": "Welcome"
-    }
+    "links": {
+      "know-more": "know-more"
+    },
+    "header": {}
   }
 }

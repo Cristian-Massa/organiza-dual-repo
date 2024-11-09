@@ -9,8 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        header: "url('/images/backgrounds/header-bg.jpg')",
+      backgroundColor: {
+        primaryBG: "#e0e0e0",
+        secondaryBG: "FFFFFF",
       },
       colors: {
         background: "var(--background)",
@@ -19,22 +20,30 @@ const config: Config = {
     },
   },
   plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        ".clip-triangle": {
+          clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+        },
+      });
+    }),
     plugin(function ({ addBase, theme }: PluginAPI) {
       addBase({
-        "h1, h2, h3, h4, h5, h6, p, a": {
-          color: theme("colors.white"),
+        "h1, h2, h3, h4, h5, h6": {
+          color: theme("colors.slate.800"),
+          fontWeight: theme("fontWeight.bold"),
+        },
+        "p, a": {
+          color: theme("colors.slate.500"),
         },
         h1: {
           fontSize: theme("fontSize.4xl"),
-          fontWeight: theme("fontWeight.extrabold"),
         },
         h2: {
           fontSize: theme("fontSize.3xl"),
-          fontWeight: theme("fontWeight.bold"),
         },
         h3: {
           fontSize: theme("fontSize.2xl"),
-          fontWeight: theme("fontWeight.semibold"),
         },
         h4: { fontSize: theme("fontSize.xl") },
         h5: { fontSize: theme("fontSize.lg") },
