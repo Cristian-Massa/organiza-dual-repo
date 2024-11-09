@@ -10,9 +10,10 @@ export default function Home() {
 
     return (
         <>
-            <header className="flex flex-col md:flex-row p-2 justify-center gap-10 items-center h-screen bg-gradient-to-t from-gray-100 shadow-sm">
+            <header className="flex flex-col p-4 md:p-40 justify-evenly gap-10 h-screen bg-landingBG bg-cover shadow-xl">
+                <h1 className="text-center md:text-start">OrgAniza</h1>
                 <div className="flex flex-col gap-5">
-                    <p className="md:max-w-[400px]">
+                    <p className="md:max-w-[500px]">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Officia nulla minus numquam cupiditate nihil esse est
                         deserunt officiis non accusantium commodi voluptatibus
@@ -26,9 +27,6 @@ export default function Home() {
                             Lorem Ipsum
                         </RedirectionButton>
                     </div>
-                </div>
-                <div className=" aspect-square w-[300px] flex justify-center items-center bg-secondaryBG rounded-full shadow-[5px_5px_24px_#bcbcbc,-5px_-5px_24px_#ffffff] ">
-                    <h1>OrgAniza</h1>
                 </div>
             </header>
             <main className="min-h-screen p-10">
@@ -104,15 +102,14 @@ export default function Home() {
                     <Container sx="relative h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
                         <Image
                             className="object-cover"
-                            
                             src="https://placehold.co/600x400"
                             fill
                             alt="professional"
                         />
                     </Container>
                 </section>
-                <section className="flex flex-col md:flex-row justify-center items-center text-center gap-10 py-20">
-                    <Container sx="relative h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
+                <section className="flex flex-col-reverse md:flex-row justify-center items-center text-center gap-10 py-20">
+                    <Container sx="relative md:flex-col h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
                         <Image
                             className="object-cover"
                             src="https://placehold.co/600x400"

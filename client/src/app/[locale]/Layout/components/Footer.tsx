@@ -3,7 +3,7 @@ import { Divider } from "@/src/app/shared/components/divider/Divider";
 
 export function Footer() {
     return (
-        <footer className=" bg-gray-800 min-h-[200px grid grid-cols-3  pt-10">
+        <footer className=" bg-gray-800 min-h-[200px] grid md:grid-cols-3 place-content-center text-center  pt-10">
             <div className="flex justify-center items-center">
                 <Link href={"/"}>
                     <h1 className="text-white">Organiza</h1>
@@ -52,7 +52,7 @@ export function Footer() {
                     </li>
                 </ul>
             </div>
-            <div className="col-span-3 h-[30px] text-center">
+            <div className="md:col-span-3 h-[30px] text-center">
                 <Divider color="light" />
                 <p className="text-white"> Organiza copyright 2024</p>
             </div>
