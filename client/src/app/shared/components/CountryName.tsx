@@ -9,6 +9,7 @@ export async function CountryName() {
                 `http://www.geoplugin.net/json.gp?ip=${ip}`,
             );
             const countryData = await countryResponse.json();
+            if (countryData.geoplugin_status !== 200) return "el pais";
 
             return countryData.geoplugin_countryName;
         } catch (error) {
