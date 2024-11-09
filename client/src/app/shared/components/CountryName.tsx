@@ -1,8 +1,9 @@
 import { headers } from "next/headers";
-
 export async function CountryName() {
     const header = await headers();
-    const ip = header.get("True-Client-IP") ?? "127.0.0.1";
+    const ip = header.get("x-forwarded-for");
+    console.log(ip);
+
     const fetchCountry = async () => {
         try {
             const countryResponse = await fetch(

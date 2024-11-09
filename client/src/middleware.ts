@@ -6,6 +6,6 @@ const middlewares = [withI18n];
 export default chain(middlewares);
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ["/", "/(es|pt|en)/:path*"],
+    // Match only internationalized pathnames
+    matcher: ["/", "/(es|pt|en)/:path*"],
 };
