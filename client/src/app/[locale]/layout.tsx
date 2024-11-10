@@ -41,7 +41,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
             <html lang={locale}>
                 <body
-                    className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondaryBG`}
+                    className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondaryBG min-h-screen`}
                 >
                     <Nav />
                     {children}
