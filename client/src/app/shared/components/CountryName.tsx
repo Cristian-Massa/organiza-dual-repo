@@ -2,7 +2,6 @@ import { headers } from "next/headers";
 export async function CountryName() {
     const header = await headers();
     const ip = header.get("x-forwarded-for");
-    console.log(ip);
 
     const fetchCountry = async () => {
         try {
@@ -14,7 +13,6 @@ export async function CountryName() {
 
             return countryData.geoplugin_countryName;
         } catch (error) {
-            console.log(error);
             return "el pais";
         }
     };

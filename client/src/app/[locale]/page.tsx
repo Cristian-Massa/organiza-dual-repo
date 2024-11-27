@@ -32,7 +32,7 @@ export default function Home() {
             <main className="min-h-screen p-10">
                 <section className="flex flex-col py-10 gap-10 text-center">
                     <article className="grid grid-cols-1 md:grid-cols-6 gap-10 h-[400px]">
-                        <Container sx="md:col-span-3 relative">
+                        <Container className="md:col-span-3 relative">
                             <Image
                                 className="object-cover"
                                 src="https://placehold.co/600x400"
@@ -40,7 +40,7 @@ export default function Home() {
                                 alt="placeholder"
                             />
                         </Container>
-                        <Container sx="md:col-span-1 relative">
+                        <Container className="md:col-span-1 relative">
                             <Image
                                 className="object-cover"
                                 src="https://placehold.co/600x400"
@@ -48,7 +48,7 @@ export default function Home() {
                                 alt="placeholder"
                             />
                         </Container>
-                        <Container sx="md:col-span-2 relative">
+                        <Container className="md:col-span-2 relative">
                             <Image
                                 className="object-cover"
                                 src="https://placehold.co/600x400"
@@ -56,7 +56,7 @@ export default function Home() {
                                 alt="placeholder"
                             />
                         </Container>
-                        <Container sx="md:col-span-2 relative">
+                        <Container className="md:col-span-2 relative">
                             <Image
                                 className="object-cover"
                                 src="https://placehold.co/600x400"
@@ -64,7 +64,7 @@ export default function Home() {
                                 alt="placeholder"
                             />
                         </Container>
-                        <Container sx="md:col-span-3 relative">
+                        <Container className="md:col-span-3 relative">
                             <Image
                                 className="object-cover"
                                 src="https://placehold.co/600x400"
@@ -72,7 +72,7 @@ export default function Home() {
                                 alt="placeholder"
                             />
                         </Container>
-                        <Container sx="col-span-1 relative">
+                        <Container className="col-span-1 relative">
                             <Image
                                 className="object-cover"
                                 src="https://placehold.co/600x400"
@@ -86,7 +86,7 @@ export default function Home() {
                     <div className="max-w-[600px]">
                         <h2>
                             Contrata el serivcio de agendaciones mas comodo de
-                            todo <CountryName />
+                            todo Uruguay
                         </h2>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
@@ -99,7 +99,7 @@ export default function Home() {
                             at officia laudantium? Fuga, tenetur?
                         </p>
                     </div>
-                    <Container sx="relative h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
+                    <Container className="relative h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
                         <Image
                             className="object-cover"
                             src="https://placehold.co/600x400"
@@ -109,7 +109,7 @@ export default function Home() {
                     </Container>
                 </section>
                 <section className="flex flex-col-reverse md:flex-row justify-center items-center text-center gap-10 py-20">
-                    <Container sx="relative md:flex-col h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
+                    <Container className="relative md:flex-col h-[300px] w-[300px] md:h-[400px] md:w-[600px]">
                         <Image
                             className="object-cover"
                             src="https://placehold.co/600x400"
@@ -120,7 +120,7 @@ export default function Home() {
                     <div className="max-w-[600px]">
                         <h2>
                             Contrata el serivcio de agendaciones mas comodo de
-                            todo el pais
+                            todo <CountryName />
                         </h2>
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing

@@ -1,14 +1,12 @@
 import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { RedirectionButton } from "@/src/app/shared/components/buttons/RedirectionButton";
-import { Container } from "@/src/app/shared/components/containers/Container";
-import { Divider } from "@/src/app/shared/components/divider/Divider";
-import { CountryName } from "@/src/app/shared/components/CountryName";
+import { Form } from "@/src/app/[locale]/register/components/Form";
 
 export default function Register() {
     const tHome = useTranslations("home");
 
     return (
-        <main className="flex flex-col p-4 md:p-40 justify-evenly gap-10 h-screen bg-landingBG bg-cover shadow-xl"></main>
+        <main className="flex justify-center items-center h-screen bg-landingBG bg-cover">
+            <Form />
+        </main>
     );
 }
