@@ -14,12 +14,12 @@ export function Nav() {
 
     return (
         <nav className=" md:fixed md:z-50 right-0 left-0 top-6 grid place-content-center">
-            <div className="flex justify-between px-10 pt-10 items-center w-screen md:hidden">
+            <div className="fixed h-10 flex justify-between px-10 pt-10 items-center w-screen md:hidden">
                 <h1 className="text-black">Organiza</h1>
                 <Button
                     className="items-center"
                     onClick={() => setOpen(!open)}
-                    buttonType="close"
+                    buttonType="text"
                 >
                     <FontAwesomeIcon
                         color="black"

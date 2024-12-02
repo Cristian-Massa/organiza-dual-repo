@@ -27,9 +27,13 @@ const passwordValidation = z
         }
     });
 
+const usernameValidation: ZodType = z
+    .string()
+    .min(1, "Tu usuario no puede estar vacío.");
+
 export const RegisterSchema: ZodType = z
     .object({
-        username: z.string().min(1, "Tu usuario no puede estar vacío."),
+        username: usernameValidation,
         email: z.string().email("Tu correo electronico esta mal escrito."),
         phone: z.string().min(5, "Tu numero de telefono no puede estar vacio."),
         password: passwordValidation,
@@ -40,3 +44,8 @@ export const RegisterSchema: ZodType = z
             "La confirmación de contraseña debe ser igual a la contraseña.",
         path: ["confirmPassword"],
     });
+
+export const LoginSchema: ZodType = z.object({
+    username: usernameValidation,
+    password: passwordValidation,
+});
