@@ -7,7 +7,7 @@ export function Footer() {
     const url = usePathname();
     return (
         <footer
-            className={` ${url ? (url.includes("register") && "hidden") || (url.includes("login") && "hidden") : null} bg-gray-800 min-h-[200px] grid md:grid-cols-3 place-content-center text-center  pt-10`}
+            className={` ${url ? url.includes("auth") && "hidden" : null} bg-gray-800 min-h-[200px] grid md:grid-cols-3 place-content-center text-center  pt-10`}
         >
             <div className="flex justify-center items-center">
                 <Link href={"/"}>

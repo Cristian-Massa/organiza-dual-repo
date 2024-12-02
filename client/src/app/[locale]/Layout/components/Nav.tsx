@@ -87,17 +87,10 @@ export function Nav() {
                 </ul>
                 <ul className="md:flex gap-10 h-10 ">
                     <li
-                        className={`${pathname.includes("/login") ? `${DEFAULTBUTTON} *:text-white` : ""} hover:${DEFAULTBUTTON} rounded-xl flex items-center px-2`}
+                        className={`${pathname.includes("/auth") ? `${DEFAULTBUTTON} *:text-white` : ""} hover:${DEFAULTBUTTON} rounded-xl flex items-center px-2`}
                     >
-                        <Link id="login" href={`/${locale}/login`}>
-                            Iniciar Secion
-                        </Link>
-                    </li>
-                    <li
-                        className={`${pathname.includes("/register") ? `${DEFAULTBUTTON} *:text-white` : ""} hover:${DEFAULTBUTTON} rounded-xl flex items-center px-2`}
-                    >
-                        <Link id="register" href={`/${locale}/register`}>
-                            Registrarse
+                        <Link id="login" href={`/${locale}/auth`}>
+                            Autenticar
                         </Link>
                     </li>
                 </ul>

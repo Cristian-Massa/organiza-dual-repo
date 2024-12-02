@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+import { type HTMLAttributes, type ReactNode } from "react";
+interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
     children?: ReactNode;
 }
 

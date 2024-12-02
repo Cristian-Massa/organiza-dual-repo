@@ -9,6 +9,15 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            animation: {
+                "translate-x-once": "translateXOnce 1s ease-in-out forwards",
+            },
+            keyframes: {
+                translateXOnce: {
+                    "0%": { transform: "translateX(100vw)" }, // Empieza fuera del viewport (en el lado derecho)
+                    "100%": { transform: "translateX(0)" }, // Termina en su posición original
+                },
+            },
             backgroundImage: {
                 landingBG: `url("/images/landing-bg.jpg")`,
             },
