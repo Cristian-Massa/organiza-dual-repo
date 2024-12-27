@@ -1,10 +1,6 @@
-import { IsString, IsEmail, IsOptional, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class RegisterBodyDto {
-  @IsString()
-  @IsNotEmpty()
-  strategy: string;
-
+export class RegisterBodyDTO {
   @IsString()
   @IsNotEmpty()
   username: string;
@@ -14,11 +10,11 @@ export class RegisterBodyDto {
   password: string;
 
   @IsEmail()
-  @IsOptional()
+  @IsNotEmpty()
   email?: string;
 
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   phone?: string;
 
   @IsOptional()

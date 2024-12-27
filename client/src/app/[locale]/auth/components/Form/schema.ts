@@ -46,6 +46,7 @@ export const RegisterSchema: ZodType = z
     });
 
 export const LoginSchema: ZodType = z.object({
-    username: usernameValidation,
+    email: z
+    .string().email(),
     password: passwordValidation,
 });

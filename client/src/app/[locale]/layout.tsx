@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "@/src/app/globals.css";
+
 import { NextIntlClientProvider } from "next-intl";
-import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
+import localFont from "next/font/local";
+import { notFound } from "next/navigation";
+
+import { Footer } from "@/src/app/[locale]/Layout/components/Footer";
+import { Nav } from "@/src/app/[locale]/Layout/components/Nav";
+import "@/src/app/globals.css";
+import Providers from "@/src/app/providers";
 import { routing } from "@/src/i18n/routing";
 import { Locales } from "@/src/types/locales";
-import { Nav } from "@/src/app/[locale]/Layout/components/Nav";
-import { Footer } from "@/src/app/[locale]/Layout/components/Footer";
 
 const geistSans = localFont({
     src: "../fonts/GeistVF.woff",
@@ -43,9 +46,11 @@ export default async function RootLayout({
                 <body
                     className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondaryBG min-h-screen`}
                 >
-                    <Nav />
-                    {children}
-                    <Footer />
+                    <Providers>
+                        <Nav />
+                        {children}
+                        <Footer />
+                    </Providers>
                 </body>
             </html>
         </NextIntlClientProvider>

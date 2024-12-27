@@ -1,12 +1,13 @@
 /** @type {import("prettier").Config} */
-const config = {
+export const config = {
     plugins: ["@trivago/prettier-plugin-sort-imports"],
     importOrder: ["^react$", "^next$", "<THIRD_PARTY_MODULES>", "^@/"],
     importOrderSeparation: true,
     importOrderSortSpecifiers: true,
     tabWidth: 4,
     semi: true,
+    endOfLine: "auto",
     singleQuote: false,
 };
 
-module.exports = config;
+export default config;

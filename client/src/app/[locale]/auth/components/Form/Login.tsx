@@ -1,5 +1,5 @@
+import { EmailAuthForm } from "@/src/app/[locale]/auth/components/Form/common/EmailAuthForm";
 import { PasswordAuthForm } from "@/src/app/[locale]/auth/components/Form/common/PasswordAuthForm";
-import { UsernameAuthForm } from "@/src/app/[locale]/auth/components/Form/common/UsernameAuthForm";
 import { Button } from "@/src/app/shared/components/buttons/Button";
 
 export function Login() {
@@ -11,7 +11,7 @@ export function Login() {
                 Excepturi, eum!
             </p>
             <div className="flex flex-col gap-2">
-                <UsernameAuthForm />
+                <EmailAuthForm />
                 <PasswordAuthForm />
                 <Button type="submit">Lorem</Button>
             </div>

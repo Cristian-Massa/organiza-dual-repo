@@ -1,30 +1,27 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Container } from "@/src/app/shared/components/containers/Container";
+import { FormProvider, useForm } from "react-hook-form";
+import "react-international-phone/style.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { Login } from "@/src/app/[locale]/auth/components/Form/Login";
+import { Register } from "@/src/app/[locale]/auth/components/Form/Register";
 import {
     LoginSchema,
     RegisterSchema,
 } from "@/src/app/[locale]/auth/components/Form/schema";
-import "react-international-phone/style.css";
-import "react-toastify/dist/ReactToastify.css";
+import { IFormInputs } from "@/src/app/[locale]/auth/components/Form/types/form";
+import { usePostUser } from "@/src/app/hooks/mutations/usePostUser";
 import { Button } from "@/src/app/shared/components/buttons/Button";
-import { Login } from "@/src/app/[locale]/auth/components/Form/Login";
-import { Register } from "@/src/app/[locale]/auth/components/Form/Register";
-interface IFormInputs {
-    username: string;
-    password: string;
-    confirmPassword: string;
-
-    email?: string;
-    phone?: string;
-    country?: string;
-}
+import { Container } from "@/src/app/shared/components/containers/Container";
 
 export function Form() {
     const [formActive, setFormActive] = useState("login");
+    const post = usePostUser(formActive);
     const methods = useForm<IFormInputs>({
         resolver: zodResolver(
             formActive === "login" ? LoginSchema : RegisterSchema,
@@ -44,7 +41,7 @@ export function Form() {
         <>
             <FormProvider {...methods}>
                 <Container
-                    className={"min-h-[400px] min-w-[300px] max-w-[400px]"}
+                    className={"min-h-[400px] min-w-[300px] max-w-[400px] p-4"}
                 >
                     <div className=" border-b flex justify-between">
                         <Button
@@ -57,6 +54,7 @@ export function Form() {
                             Login
                         </Button>
                         <Button
+                            disabled={post.isPending}
                             onClick={handleFormActive}
                             id="register"
                             buttonType={
@@ -68,7 +66,7 @@ export function Form() {
                     </div>
                     <form
                         onSubmit={methods.handleSubmit((data) => {
-                            console.log(data);
+                            post.mutate(data);
                         })}
                     >
                         {formActive === "login" ? <Login /> : <Register />}

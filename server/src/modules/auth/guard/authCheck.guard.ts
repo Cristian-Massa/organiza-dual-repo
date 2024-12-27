@@ -1,3 +1,4 @@
+import { HTTP_RESULT_MESSAGES } from '@/common/constants/HTTP_RESULT_MESSAGES';
 import { JwtTokenUtil } from '@/common/utils/jwtToken.util';
 import { UsersService } from '@/modules/users/service/users.service';
 import {
@@ -16,19 +17,22 @@ export class AuthCheckGuard implements CanActivate {
     const { session } = request.cookies;
     if (!session) {
       throw new HttpException(
-        'Debes iniciar sesion para realizar esta accion',
+        HTTP_RESULT_MESSAGES.auth.failure.need_login,
         HttpStatus.UNAUTHORIZED,
       );
     }
     const decrypted = JwtTokenUtil.verifyToken(session);
     if (decrypted.exp! < Date.now() / 1000) {
-      throw new HttpException('Tu sesion ha expirado', HttpStatus.UNAUTHORIZED);
+      throw new HttpException(
+        HTTP_RESULT_MESSAGES.auth.failure.expired_session,
+        HttpStatus.UNAUTHORIZED,
+      );
     }
+    const user = await this.usersService.userModel.findById(decrypted.id);
 
-    const user = await this.usersService.userModel.findById(decrypted.data);
     if (!user) {
       throw new HttpException(
-        'No se pudo encontrar el usuario',
+        HTTP_RESULT_MESSAGES.user.failure.not_found,
         HttpStatus.UNAUTHORIZED,
       );
     }

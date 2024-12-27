@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import { Divider } from "@/src/app/shared/components/divider/Divider";
+
 export function Footer() {
     const url = usePathname();
     return (
         <footer
-            className={` ${url ? url.includes("auth") && "hidden" : null} bg-gray-800 min-h-[200px] grid md:grid-cols-3 place-content-center text-center  pt-10`}
+            className={` ${url ? url.includes("auth") || (url.includes("profile") && "hidden") : null} bg-gray-800 min-h-[200px] grid md:grid-cols-3 place-content-center text-center  pt-10`}
         >
             <div className="flex justify-center items-center">
                 <Link href={"/"}>

@@ -1,16 +1,8 @@
-import { IsEmail, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 
 export class AuthBodyDTO {
-  @IsString()
-  strategy: string;
-
-  @IsOptional()
-  @IsString()
-  phone?: string;
-
-  @IsOptional()
   @IsEmail()
-  email?: string;
+  email: string;
 
   @IsString()
   password: string;

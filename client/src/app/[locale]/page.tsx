@@ -1,12 +1,16 @@
-import { useTranslations } from "next-intl";
+import * as jwt from "jsonwebtoken";
+import { cookies } from "next/headers";
 import Image from "next/image";
+
+import { CountryName } from "@/src/app/shared/components/CountryName";
 import { RedirectionButton } from "@/src/app/shared/components/buttons/RedirectionButton";
 import { Container } from "@/src/app/shared/components/containers/Container";
 import { Divider } from "@/src/app/shared/components/divider/Divider";
-import { CountryName } from "@/src/app/shared/components/CountryName";
 
-export default function Home() {
-    const tHome = useTranslations("home");
+export default async function Home() {
+    const session = (await cookies()).get("session");
+    const userData = jwt.decode(session?.value ?? "") as jwt.JwtPayload;
+    const parsedUserData = userData && userData;
 
     return (
         <>
@@ -136,22 +140,40 @@ export default function Home() {
                 </section>
                 <Divider color={"light"} />
                 <section className="flex flex-col md:flex-row justify-center items-center text-center gap-10 py-20 min-h-screen">
-                    <div className="max-w-[600px]">
-                        <h2>inicia sesion</h2>
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Laboriosam soluta tempore quasi obcaecati nemo
-                            dolorum facere sit? Possimus, eligendi tempora.
-                        </p>
-                        <div className="flex gap-10 place-content-center py-10">
-                            <RedirectionButton path="/login">
-                                Iniciar sesion
-                            </RedirectionButton>
-                            <RedirectionButton path="/register">
-                                Registrarse
-                            </RedirectionButton>
+                    {!session ? (
+                        <div className="max-w-[600px]">
+                            <h2>Inicia sesion</h2>
+                            <p>
+                                Lorem ipsum dolor, sit amet consectetur
+                                adipisicing elit. Laboriosam soluta tempore
+                                quasi obcaecati nemo dolorum facere sit?
+                                Possimus, eligendi tempora.
+                            </p>
+                            <div className="flex gap-10 place-content-center py-10">
+                                <RedirectionButton path="/login">
+                                    Iniciar sesion
+                                </RedirectionButton>
+                                <RedirectionButton path="/register">
+                                    Registrarse
+                                </RedirectionButton>
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="max-w-[600px]">
+                            <h2>Bienvenido {parsedUserData?.username ?? ""}</h2>
+                            <p>
+                                Lorem ipsum dolor, sit amet consectetur
+                                adipisicing elit. Laboriosam soluta tempore
+                                quasi obcaecati nemo dolorum facere sit?
+                                Possimus, eligendi tempora.
+                            </p>
+                            <div className="flex gap-10 place-content-center py-10">
+                                <RedirectionButton path="/login">
+                                    Panel de control
+                                </RedirectionButton>
+                            </div>
+                        </div>
+                    )}
                 </section>
             </main>
         </>
